@@ -36,10 +36,20 @@ $ npm install
 
 ## Running the app
 
+Docker will start:
+- API
+- Postgres (if databases don't exists, two databases will be created: `naya-api-dev` and `naya-api-test`)
+
 ```bash
 # development
 $ docker compose up -d
 ```
+
+### Database credentials
+
+- host: `localhost:5432'
+- username: `postgres`
+- password: `postgres` 
 
 ## Test
 
