@@ -36,15 +36,15 @@ $ npm install
 
 ## Running the app
 
-Docker will start:
-
-- API
-- Postgres (if databases don't exists, two databases will be created: `naya-api-dev` and `naya-api-test` which is used for e2e tests)
-
 ```bash
 # development
 $ docker compose up -d
 ```
+
+This command will start:
+
+- API
+- Postgres (if databases don't exists, two databases will be created: `naya-api-dev` and `naya-api-test` which is used for e2e tests)
 
 ### Database credentials
 
