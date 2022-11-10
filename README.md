@@ -47,7 +47,7 @@ $ docker compose up -d
 
 ### Database credentials
 
-- host: `localhost:5432'
+- host: `localhost:5432`
 - username: `postgres`
 - password: `postgres` 
 
