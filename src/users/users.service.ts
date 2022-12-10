@@ -5,10 +5,13 @@ import { User } from 'src/users/entities/user.entity';
 export class UsersService {
   private users: User[] = [
     {
-      id: 1,
+      id: '1',
       firstName: 'Shipwreck Roast',
       lastName: 'Buddy Brew',
-      organizationId: 1,
+      email: 'mail@mail.com',
+      organizationId: '1',
+      createdAt: new Date(),
+      updatedAt: new Date(),
     },
   ];
 
@@ -17,7 +20,7 @@ export class UsersService {
   }
 
   findOne(id: string) {
-    const user = this.users.find((item) => item.id === +id);
+    const user = this.users.find((item) => item.id === id);
     if (!user) {
       throw new NotFoundException(`user #${id} not found`);
     }
@@ -36,7 +39,7 @@ export class UsersService {
   }
 
   remove(id: string) {
-    const userIndex = this.users.findIndex((item) => item.id === +id);
+    const userIndex = this.users.findIndex((item) => item.id === id);
     if (userIndex >= 0) {
       this.users.splice(userIndex, 1);
     }

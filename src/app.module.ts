@@ -10,7 +10,7 @@ import ormconfig from 'src/database/ormconfig';
   imports: [
     TypeOrmModule.forRoot({
       ...ormconfig,
-      autoLoadEntities: true, // models will be loaded automatically
+      autoLoadEntities: true, // every entity registered through the forFeature() method will be automatically added to the entities array
     }),
     UsersModule,
     OrganizationsModule,
