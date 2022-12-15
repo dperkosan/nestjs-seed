@@ -1,4 +1,4 @@
-import { BaseUuid } from 'src/common/entities/base-uuid.entity';
+import { BaseUuid } from './../../common/entities/base-uuid.entity';
 import { Column, Entity } from 'typeorm';
 
 @Entity()

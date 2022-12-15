@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import { AppController } from 'src/app.controller';
-import { AppService } from 'src/app.service';
-import { UsersModule } from 'src/users/users.module';
-import { OrganizationsModule } from 'src/organizations/organizations.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import ormconfig from 'src/database/ormconfig';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import ormconfig from './database/ormconfig';
+import { OrganizationsModule } from './organizations/organizations.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
