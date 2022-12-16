@@ -13,16 +13,21 @@ export class UsersService {
   ) {}
 
   findAll() {
-    return this.userRepository.find();
+    return this.userRepository.find({
+      relations: ['organization'],
+    });
   }
 
   findOne(conditions: FindOneOptions<User>) {
-    this.userRepository.findOne(conditions);
+    this.userRepository.findOne({ ...conditions, relations: ['organization'] });
   }
 
   async findOneOrFail(conditions: FindOneOptions<User>) {
     try {
-      const user = await this.userRepository.findOneOrFail(conditions);
+      const user = await this.userRepository.findOneOrFail({
+        ...conditions,
+        relations: ['organization'],
+      });
       return user;
     } catch (e) {
       throw new NotFoundException('User not found');
