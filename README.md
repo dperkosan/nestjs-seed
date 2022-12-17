@@ -1,6 +1,12 @@
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+NestJs Seed application based on:
+- postgres
+
+and three different environments:
+- development
+- test
+- production
 
 ## Installation
 
@@ -10,17 +16,14 @@ Install the _JavaScript_ dependencies
 $ npm install
 ```
 
-## Running the app
+## Start Docker containers
 
 ```bash
-# development
 $ docker compose up -d
 ```
 
-This command will start:
-
-- API
-- Postgres (if databases don't exists, two databases will be created: `naya-api-dev` and `naya-api-test` which is used for e2e tests)
+This command will start docker containers:
+- database (Postgres:latest) (if databases don't exists, two databases will be created: `naya-api-dev` and `naya-api-test` which is used for e2e tests)
 
 ### Database credentials
 
@@ -28,6 +31,22 @@ This command will start:
 - databases: `naya-api-dev` and `naya-api-test`
 - username: `postgres`
 - password: `postgres`
+
+## Run migration files
+
+```bash
+$ npm run migration:run
+```
+
+## Seed the database
+
+## Launch the API
+
+```bash
+$ npm run start:dev
+```
+
+This command will launch the API in watch mode.
 
 ## Test
 

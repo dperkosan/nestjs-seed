@@ -1,23 +1,6 @@
 services:
-  api:
-    build:
-      dockerfile: Dockerfile
-      context: .
-      # Only will build development stage from our dockerfile
-      target: development
-    volumes:
-      - .:/usr/src/app
-    env_file:
-      - .env
-    # Run a command against the development stage of the image
-    command: npm run start:dev
-    ports:
-      - 3000:3000
-    depends_on:
-      - postgres
-  postgres:
-    image: postgres
-    restart: always
+  database:
+    image: postgres:latest
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_USER: ${POSTGRES_USER}
@@ -25,4 +8,9 @@ services:
     ports:
       - '5432:5432'
     volumes:
-      - ./database:/docker-entrypoint-initdb.d
+      - ./src/database:/docker-entrypoint-initdb.d
+    container_name: database
+
+networks:
+  default:
+    name: nestjs-seed-network
