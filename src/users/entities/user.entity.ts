@@ -14,7 +14,7 @@ export class User extends BaseUuid {
   email: string;
 
   @Column()
-  organizationId: string;
+  organizationId: Organization['id'];
 
   @ManyToOne(
     () => Organization,

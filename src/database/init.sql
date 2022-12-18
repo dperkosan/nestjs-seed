@@ -1,1 +1,1 @@
-CREATE DATABASE "naya-api-test";
+CREATE DATABASE "nestjs-seed-test";

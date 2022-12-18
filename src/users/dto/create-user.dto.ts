@@ -1,4 +1,5 @@
 import { IsNotEmpty, IsString } from 'class-validator';
+import { Organization } from 'src/organizations/entities/organization.entity';
 
 export class CreateUserDto {
   @IsString()
@@ -15,5 +16,5 @@ export class CreateUserDto {
 
   @IsString()
   @IsNotEmpty()
-  readonly organizationId: string;
+  readonly organizationId: Organization['id'];
 }

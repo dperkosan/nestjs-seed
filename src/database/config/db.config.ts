@@ -15,12 +15,12 @@ type NodeEnvAllowedValues = 'development' | 'test' | 'production';
 const config: Record<NodeEnvAllowedValues, DataSourceOptions> = {
   development: {
     ...defaultConfig,
-    database: 'naya-api-dev',
+    database: 'nestjs-seed-dev',
     logging: true,
   },
   test: {
     ...defaultConfig,
-    database: 'naya-api-test',
+    database: 'nestjs-seed-test',
     synchronize: true,
   },
   production: {

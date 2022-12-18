@@ -23,12 +23,12 @@ $ docker compose up -d
 ```
 
 This command will start docker containers:
-- database (Postgres:latest) (if databases don't exists, two databases will be created: `naya-api-dev` and `naya-api-test` which is used for e2e tests)
+- database (Postgres:latest) (if databases don't exists, two databases will be created: `nestjs-seed-dev` and `nestjs-seed-test` which is used for e2e tests)
 
 ### Database credentials
 
 - host: `localhost:5432`
-- databases: `naya-api-dev` and `naya-api-test`
+- databases: `nestjs-seed-dev` and `nestjs-seed-test`
 - username: `postgres`
 - password: `postgres`
 
