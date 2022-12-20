@@ -18,22 +18,22 @@ export class OrganizationsController {
   constructor(private readonly organizationsService: OrganizationsService) {}
 
   @Post()
-  create(@Body() createOrganizationDto: CreateOrganizationDto) {
+  async create(@Body() createOrganizationDto: CreateOrganizationDto) {
     return this.organizationsService.create(createOrganizationDto);
   }
 
   @Get()
-  findAll() {
+  async findAll() {
     return this.organizationsService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id', ParseUUIDPipe) id: Organization['id']) {
+  async findOne(@Param('id', ParseUUIDPipe) id: Organization['id']) {
     return this.organizationsService.findOneOrFail({ where: { id } });
   }
 
   @Patch(':id')
-  update(
+  async update(
     @Param('id', ParseUUIDPipe) id: Organization['id'],
     @Body() updateOrganizationDto: UpdateOrganizationDto,
   ) {
@@ -41,7 +41,7 @@ export class OrganizationsController {
   }
 
   @Delete(':id')
-  remove(@Param('id', ParseUUIDPipe) id: Organization['id']) {
+  async remove(@Param('id', ParseUUIDPipe) id: Organization['id']) {
     return this.organizationsService.remove(id);
   }
 }

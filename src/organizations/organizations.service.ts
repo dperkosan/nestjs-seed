@@ -16,22 +16,22 @@ export class OrganizationsService {
     relations: ['users'],
   };
 
-  create(createOrganizationDto: CreateOrganizationDto) {
+  async create(createOrganizationDto: CreateOrganizationDto) {
     const organization = this.organizationRepository.create(
       createOrganizationDto,
     );
     return this.organizationRepository.save(organization);
   }
 
-  findAll() {
+  async findAll() {
     return this.organizationRepository.find({
       order: { name: 'ASC' },
       ...this.findWithRelations,
     });
   }
 
-  findOne(conditions: FindOneOptions<Organization>) {
-    this.organizationRepository.findOne({
+  async findOne(conditions: FindOneOptions<Organization>) {
+    return this.organizationRepository.findOne({
       ...conditions,
       ...this.findWithRelations,
     });

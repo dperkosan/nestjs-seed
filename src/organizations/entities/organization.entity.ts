@@ -7,6 +7,8 @@ export class Organization extends BaseUuid {
   @Column()
   name: string;
 
-  @OneToMany(() => User, (user: User) => user.organization)
+  @OneToMany(() => User, (user: User) => user.organization, {
+    cascade: ['insert', 'update'],
+  })
   users: Omit<User, 'organization'>[];
 }

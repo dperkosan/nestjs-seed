@@ -16,20 +16,23 @@ export class UsersService {
     relations: ['organization'],
   };
 
-  create(createUserDto: CreateUserDto) {
+  async create(createUserDto: CreateUserDto) {
     const user = this.userRepository.create(createUserDto);
     return this.userRepository.save(user);
   }
 
-  findAll() {
+  async findAll() {
     return this.userRepository.find({
       order: { lastName: 'ASC' },
       ...this.findWithRelations,
     });
   }
 
-  findOne(conditions: FindOneOptions<User>) {
-    this.userRepository.findOne({ ...conditions, ...this.findWithRelations });
+  async findOne(conditions: FindOneOptions<User>) {
+    return this.userRepository.findOne({
+      ...conditions,
+      ...this.findWithRelations,
+    });
   }
 
   async findOneOrFail(conditions: FindOneOptions<User>) {

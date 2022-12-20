@@ -19,23 +19,23 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
-  create(@Body() createUserDto: CreateUserDto) {
+  async create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
   }
 
   @Get()
-  findAll(@Query() paginationQuery) {
+  async findAll(@Query() paginationQuery) {
     // const { limit, offset } = paginationQuery;
     return this.usersService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id', ParseUUIDPipe) id: User['id']) {
+  async findOne(@Param('id', ParseUUIDPipe) id: User['id']) {
     return this.usersService.findOneOrFail({ where: { id } });
   }
 
   @Patch(':id')
-  update(
+  async update(
     @Param('id', ParseUUIDPipe) id: User['id'],
     @Body() updateUserDto: UpdateUserDto,
   ) {
@@ -43,7 +43,7 @@ export class UsersController {
   }
 
   @Delete(':id')
-  remove(@Param('id', ParseUUIDPipe) id: User['id']) {
+  async remove(@Param('id', ParseUUIDPipe) id: User['id']) {
     return this.usersService.remove(id);
   }
 }
