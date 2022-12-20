@@ -12,31 +12,36 @@ export class UsersService {
     private userRepository: Repository<User>,
   ) {}
 
+  private findWithRelations = {
+    relations: ['organization'],
+  };
+
+  create(createUserDto: CreateUserDto) {
+    const user = this.userRepository.create(createUserDto);
+    return this.userRepository.save(user);
+  }
+
   findAll() {
     return this.userRepository.find({
-      relations: ['organization'],
+      order: { lastName: 'ASC' },
+      ...this.findWithRelations,
     });
   }
 
   findOne(conditions: FindOneOptions<User>) {
-    this.userRepository.findOne({ ...conditions, relations: ['organization'] });
+    this.userRepository.findOne({ ...conditions, ...this.findWithRelations });
   }
 
   async findOneOrFail(conditions: FindOneOptions<User>) {
     try {
       const user = await this.userRepository.findOneOrFail({
         ...conditions,
-        relations: ['organization'],
+        ...this.findWithRelations,
       });
       return user;
     } catch (e) {
       throw new NotFoundException('User not found');
     }
-  }
-
-  create(createUserDto: CreateUserDto) {
-    const user = this.userRepository.create(createUserDto);
-    return this.userRepository.save(user);
   }
 
   async update(id: User['id'], updateUserDto: UpdateUserDto) {

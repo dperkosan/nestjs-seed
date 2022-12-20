@@ -24,7 +24,10 @@ export class OrganizationsService {
   }
 
   findAll() {
-    return this.organizationRepository.find(this.findWithRelations);
+    return this.organizationRepository.find({
+      order: { name: 'ASC' },
+      ...this.findWithRelations,
+    });
   }
 
   findOne(conditions: FindOneOptions<Organization>) {
