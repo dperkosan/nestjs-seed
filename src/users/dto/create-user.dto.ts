@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
 import { Organization } from 'src/organizations/entities/organization.entity';
 
 export class CreateUserDto {
@@ -12,6 +12,7 @@ export class CreateUserDto {
 
   @IsString()
   @IsNotEmpty()
+  @IsEmail()
   readonly email: string;
 
   @IsString()

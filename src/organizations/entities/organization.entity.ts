@@ -8,7 +8,7 @@ export class Organization extends BaseUuid {
   name: string;
 
   @OneToMany(() => User, (user: User) => user.organization, {
-    cascade: ['insert', 'update'],
+    cascade: ['insert'],
   })
   users: Omit<User, 'organization'>[];
 }
