@@ -12,6 +12,10 @@ async function bootstrap() {
       // transform primitive types (string) into expected ones in dto files
       // can impact performance
       transform: true,
+      transformOptions: {
+        // with this, there is no need for: @Type(() => Number)
+        enableImplicitConversion: true,
+      },
     }),
   );
   await app.listen(3000);

@@ -7,7 +7,9 @@ import {
   ParseUUIDPipe,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
+import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto/pagination-query.dto';
 import { CreateOrganizationDto } from './dto/create-organization.dto';
 import { UpdateOrganizationDto } from './dto/update-organization.dto';
 import { Organization } from './entities/organization.entity';
@@ -23,8 +25,8 @@ export class OrganizationsController {
   }
 
   @Get()
-  async findAll() {
-    return this.organizationsService.findAll();
+  async findAll(@Query() paginationQueryDto: PaginationQueryDto) {
+    return this.organizationsService.findAll(paginationQueryDto);
   }
 
   @Get(':id')

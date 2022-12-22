@@ -9,6 +9,7 @@ import {
   Post,
   Query,
 } from '@nestjs/common';
+import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto/pagination-query.dto';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
@@ -24,9 +25,8 @@ export class UsersController {
   }
 
   @Get()
-  async findAll(@Query() paginationQuery) {
-    // const { limit, offset } = paginationQuery;
-    return this.usersService.findAll();
+  async findAll(@Query() paginationQueryDto: PaginationQueryDto) {
+    return this.usersService.findAll(paginationQueryDto);
   }
 
   @Get(':id')
