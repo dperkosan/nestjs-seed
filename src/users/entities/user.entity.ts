@@ -1,8 +1,9 @@
 import { Organization } from './../../organizations/entities/organization.entity';
-import { Column, Entity, ManyToOne } from 'typeorm';
+import { Column, Entity, ManyToOne, Unique } from 'typeorm';
 import { BaseUuid } from './../../common/entities/base-uuid.entity';
 
 @Entity()
+@Unique(['email'])
 export class User extends BaseUuid {
   @Column()
   firstName: string;
