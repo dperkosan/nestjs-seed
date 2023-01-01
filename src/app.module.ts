@@ -1,16 +1,20 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import dbconfig from './database/config/db.config';
+import { dataSourceOptions } from './database/config/typeorm.config';
 import { OrganizationsModule } from './organizations/organizations.module';
 import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      ...dbconfig,
-      autoLoadEntities: true, // every entity registered through the forFeature() method will be automatically added to the entities array
+    ConfigModule.forRoot({ isGlobal: true }),
+    TypeOrmModule.forRootAsync({
+      useFactory: () => ({
+        ...dataSourceOptions,
+        autoLoadEntities: true, // every entity registered through the forFeature() method will be automatically added to the entities array
+      }),
     }),
     UsersModule,
     OrganizationsModule,
