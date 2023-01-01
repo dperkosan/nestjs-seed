@@ -14,7 +14,12 @@ const defaultDataSourceOptions: DataSourceOptions = {
   migrations: ['dist/database/migrations/*.js'],
 };
 
-type NodeEnvAllowedValues = 'development' | 'test' | 'production';
+export const nodeEnvAllowedValues = [
+  'development',
+  'test',
+  'production',
+] as const;
+type NodeEnvAllowedValues = typeof nodeEnvAllowedValues[number];
 
 const config: Record<NodeEnvAllowedValues, DataSourceOptions> = {
   development: {
