@@ -1,10 +1,11 @@
 import * as Joi from '@hapi/joi';
 import { Module, ValidationPipe } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { APP_PIPE } from '@nestjs/core';
+import { APP_FILTER, APP_PIPE } from '@nestjs/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { QueryFailedExceptionFilter } from './common/filters/query-failed-exception/query-failed-exception.filter';
 import { dataSourceOptions } from './database/config/typeorm.config';
 import { nodeEnvAllowedValues } from './database/config/typeorm.config';
 import { OrganizationsModule } from './organizations/organizations.module';
@@ -46,6 +47,10 @@ import { UsersModule } from './users/users.module';
           forbidNonWhitelisted: true,
           forbidUnknownValues: true,
         }),
+    },
+    {
+      provide: APP_FILTER,
+      useClass: QueryFailedExceptionFilter,
     },
   ],
 })
