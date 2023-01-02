@@ -8,6 +8,25 @@ and three different environments:
 - test
 - production
 
+## Dependencies: Node & friends
+
+- You need [`node`](https://nodejs.org/en/) (v18.12.1) and we highly recommend installing it through a _Version Manager_, such as [`nvm`](https://github.com/creationix/nvm).
+- [Docker](https://docs.docker.com/engine/install) must be installed on your machine.
+
+## .env file
+
+In root folder, create `.env` file with following configuration:
+
+```shell
+NODE_ENV=development
+DB_HOST=localhost
+DB_NAME=nestjs-seed-dev
+DB_NAME_TEST=nestjs-seed-test
+DB_PORT=5432
+DB_USERNAME=postgres
+DB_PASSWORD=postgres
+```
+
 ## Installation
 
 Install the _JavaScript_ dependencies
@@ -24,13 +43,6 @@ $ docker compose up -d
 
 This command will start docker containers:
 - database (Postgres:latest) (if databases don't exists, two databases will be created: `nestjs-seed-dev` and `nestjs-seed-test` which is used for e2e tests)
-
-### Database credentials
-
-- host: `localhost:5432`
-- databases: `nestjs-seed-dev` and `nestjs-seed-test`
-- username: `postgres`
-- password: `postgres`
 
 ## Run migration files
 
