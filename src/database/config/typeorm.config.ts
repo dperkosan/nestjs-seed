@@ -28,6 +28,7 @@ const config: Record<NodeEnvAllowedValues, DataSourceOptions> = {
   },
   test: {
     ...defaultDataSourceOptions,
+    database: process.env.DB_NAME_TEST, // test database name
     synchronize: true,
   },
   production: {

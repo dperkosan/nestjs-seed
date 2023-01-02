@@ -20,6 +20,7 @@ import { UsersModule } from './users/users.module';
           .default('development'),
         DB_HOST: Joi.required(),
         DB_NAME: Joi.required(),
+        DB_NAME_TEST: Joi.string().default('nestjs-seed-test'),
         DB_PORT: Joi.number().default(5432),
         DB_USERNAME: Joi.required(),
         DB_PASSWORD: Joi.required(),
