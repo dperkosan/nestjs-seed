@@ -42,7 +42,7 @@ $ docker compose up -d
 ```
 
 This command will start docker containers:
-- database (Postgres:latest) (if databases don't exists, two databases will be created: `nestjs-seed-dev` and `nestjs-seed-test` which is used for e2e tests)
+- Postgres: if databases don't exist, two databases will be created: `nestjs-seed-dev` and `nestjs-seed-test` which is used for e2e tests
 
 ## Run migration files
 
