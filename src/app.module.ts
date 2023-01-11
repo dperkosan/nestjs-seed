@@ -1,4 +1,3 @@
-import * as Joi from '@hapi/joi';
 import { Module, ValidationPipe } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { APP_FILTER, APP_PIPE } from '@nestjs/core';
@@ -6,8 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { QueryFailedExceptionFilter } from './common/filters/query-failed-exception/query-failed-exception.filter';
-import { dataSourceOptions } from './database/config/typeorm.config';
-import { nodeEnvAllowedValues } from './database/config/typeorm.config';
+import { typeOrmModuleOptions } from './database/config/typeorm.config';
 import { OrganizationsModule } from './organizations/organizations.module';
 import { UsersModule } from './users/users.module';
 
@@ -15,22 +13,10 @@ import { UsersModule } from './users/users.module';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      validationSchema: Joi.object({
-        NODE_ENV: Joi.string()
-          .valid(...nodeEnvAllowedValues)
-          .default('development'),
-        DB_HOST: Joi.required(),
-        DB_NAME: Joi.required(),
-        DB_NAME_TEST: Joi.string().default('nestjs-seed-test'),
-        DB_PORT: Joi.number().default(5432),
-        DB_USERNAME: Joi.required(),
-        DB_PASSWORD: Joi.required(),
-      }),
     }),
     TypeOrmModule.forRootAsync({
       useFactory: () => ({
-        ...dataSourceOptions,
-        autoLoadEntities: true, // every entity registered through the forFeature() method will be automatically added to the entities array
+        ...typeOrmModuleOptions,
       }),
     }),
     UsersModule,
@@ -46,6 +32,13 @@ import { UsersModule } from './users/users.module';
           whitelist: true,
           forbidNonWhitelisted: true,
           forbidUnknownValues: true,
+          // transform primitive types (string) into expected ones in dto files
+          // can impact performance
+          transform: true,
+          transformOptions: {
+            // with this, there is no need for: @Type(() => Number)
+            enableImplicitConversion: true,
+          },
         }),
     },
     {

@@ -1,5 +1,6 @@
-import 'dotenv/config'; // try to find better way with ConfigModule
+import 'dotenv/config'; // try to find better way with ConfigModule. This is because of the migration script where I don't have ENV variables.
 import { DataSource, DataSourceOptions } from 'typeorm';
+import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
 const defaultDataSourceOptions: DataSourceOptions = {
   type: 'postgres', // type of the database
@@ -38,10 +39,15 @@ const config: Record<NodeEnvAllowedValues, DataSourceOptions> = {
   },
 };
 
-export const dataSourceOptions: DataSourceOptions = {
+const dataSourceOptions: DataSourceOptions = {
   ...config[
     (process.env.NODE_ENV as NodeEnvAllowedValues | undefined) || 'development'
   ],
+};
+
+export const typeOrmModuleOptions: TypeOrmModuleOptions = {
+  ...dataSourceOptions,
+  autoLoadEntities: true, // every entity registered through the forFeature() method will be automatically added to the entities array
 };
 
 const dataSource = new DataSource(dataSourceOptions);
