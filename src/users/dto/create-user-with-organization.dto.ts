@@ -1,6 +1,6 @@
 import { OmitType } from '@nestjs/mapped-types';
 import { CreateUserDto } from './create-user.dto';
 
-export class CreateUserWithOrganizationtDto extends OmitType(CreateUserDto, [
+export class CreateUserWithOrganizationDto extends OmitType(CreateUserDto, [
   'organizationId',
 ]) {}

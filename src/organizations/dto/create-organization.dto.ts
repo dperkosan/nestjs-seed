@@ -6,7 +6,7 @@ import {
   IsString,
   ValidateNested,
 } from 'class-validator';
-import { CreateUserWithOrganizationtDto } from 'src/users/dto/create-user-with-organization.dto';
+import { CreateUserWithOrganizationDto } from 'src/users/dto/create-user-with-organization.dto';
 
 export class CreateOrganizationDto {
   @IsString()
@@ -17,6 +17,6 @@ export class CreateOrganizationDto {
   @IsOptional()
   @IsArray()
   @ValidateNested({ each: true })
-  @Type(() => CreateUserWithOrganizationtDto)
-  readonly users: CreateUserWithOrganizationtDto[];
+  @Type(() => CreateUserWithOrganizationDto)
+  readonly users: CreateUserWithOrganizationDto[];
 }
