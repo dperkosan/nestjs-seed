@@ -1,4 +1,4 @@
-import { Type } from 'class-transformer';
+import { Transform, Type } from 'class-transformer';
 import {
   IsArray,
   IsNotEmpty,
@@ -11,6 +11,7 @@ import { CreateUserWithOrganizationtDto } from 'src/users/dto/create-user-with-o
 export class CreateOrganizationDto {
   @IsString()
   @IsNotEmpty()
+  @Transform(({ value }) => value.trim())
   readonly name: string;
 
   @IsOptional()
