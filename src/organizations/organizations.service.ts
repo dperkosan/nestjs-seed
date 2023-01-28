@@ -58,14 +58,14 @@ export class OrganizationsService {
     id: Organization['id'],
     updateOrganizationDto: UpdateOrganizationDto,
   ) {
-    const organization = await this.organizationRepository.preload({
-      id: id,
+    const organization = await this.findOneOrFail({ where: { id } });
+
+    const organizationDto = {
+      ...organization,
       ...updateOrganizationDto,
-    });
-    if (!organization) {
-      throw new NotFoundException(`Organization #${id} not found`);
-    }
-    return this.organizationRepository.save(organization);
+    };
+
+    return this.organizationRepository.save(organizationDto);
   }
 
   async remove(id: Organization['id']) {
