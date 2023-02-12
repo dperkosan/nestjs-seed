@@ -1,6 +1,7 @@
 ## Description
 
 NestJs Seed application based on:
+- docker
 - postgres
 
 and three different environments:
@@ -51,6 +52,10 @@ $ npm run migration:run
 ```
 
 ## Seed the database
+
+```bash
+$ npm run seed
+```
 
 ## Launch the API
 

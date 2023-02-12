@@ -23,7 +23,8 @@
     "migration:create": "npm run typeorm -- migration:create",
     "migration:generate": "npm run typeorm -- migration:generate",
     "migration:run": "npm run typeorm -- migration:run",
-    "migration:revert": "npm run typeorm -- migration:revert"
+    "migration:revert": "npm run typeorm -- migration:revert",
+    "seed": "npm run build && npx typeorm-extension seed -d dist/database/config/typeorm.config"
   },
   "dependencies": {
     "@hapi/joi": "^17.1.1",
@@ -39,7 +40,8 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",
-    "typeorm": "^0.3.11"
+    "typeorm": "^0.3.11",
+    "typeorm-extension": "^2.4.2"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.1.5",
