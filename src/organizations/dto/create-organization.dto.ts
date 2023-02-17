@@ -7,7 +7,7 @@ import {
   ValidateNested,
 } from 'class-validator';
 
-import { CreateUserWithOrganizationDto } from 'src/users/dto/create-user-with-organization.dto';
+import { CreateUserWithOrganizationDto } from '../../users/dto/create-user-with-organization.dto';
 
 export class CreateOrganizationDto {
   @IsString()

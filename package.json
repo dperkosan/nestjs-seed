@@ -69,21 +69,34 @@
     "typescript": "^4.7.4"
   },
   "jest": {
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 20,
+        "lines": 60,
+        "statements": 60
+      }
+    },
     "moduleFileExtensions": [
       "js",
       "json",
       "ts"
     ],
-    "rootDir": ".",
-    "modulePaths": [
-      "<rootDir>"
-    ],
+    "rootDir": "src",
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
     },
     "collectCoverageFrom": [
       "**/*.(t|j)s"
+    ],
+    "coveragePathIgnorePatterns": [
+      ".module.ts",
+      ".factory.ts",
+      ".dto.ts",
+      ".entity.ts",
+      "<rootDir>/database/",
+      "<rootDir>/main.ts"
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
