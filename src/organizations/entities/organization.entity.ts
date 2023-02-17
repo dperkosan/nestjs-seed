@@ -1,5 +1,6 @@
-import { BaseUuid } from './../../common/entities/base-uuid.entity';
 import { Column, Entity, OneToMany } from 'typeorm';
+
+import { BaseUuid } from './../../common/entities/base-uuid.entity';
 import { User } from './../../users/entities/user.entity';
 
 @Entity()

@@ -1,5 +1,6 @@
-import { Organization } from './../../organizations/entities/organization.entity';
 import { Column, Entity, ManyToOne, Unique } from 'typeorm';
+
+import { Organization } from './../../organizations/entities/organization.entity';
 import { BaseUuid } from './../../common/entities/base-uuid.entity';
 
 @Entity()
