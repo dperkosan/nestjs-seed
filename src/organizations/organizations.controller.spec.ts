@@ -1,7 +1,11 @@
 import { faker } from '@faker-js/faker';
 import { Test, TestingModule } from '@nestjs/testing';
+import { randomUUID } from 'crypto';
 
+import { PaginationQueryDto } from '../common/dto/pagination-query.dto';
 import { CreateOrganizationDto } from './dto/create-organization.dto';
+import { UpdateOrganizationDto } from './dto/update-organization.dto';
+import { Organization } from './entities/organization.entity';
 import { OrganizationsController } from './organizations.controller';
 import { OrganizationsService } from './organizations.service';
 
@@ -17,6 +21,10 @@ describe('OrganizationsController', () => {
           provide: OrganizationsService,
           useValue: {
             create: jest.fn(),
+            findAll: jest.fn(),
+            findOneOrFail: jest.fn(),
+            update: jest.fn(),
+            remove: jest.fn(),
           },
         },
       ],
@@ -73,6 +81,61 @@ describe('OrganizationsController', () => {
         expect(service.create).toBeCalledTimes(1);
         expect(service.create).toBeCalledWith(createOrganizationDto);
       });
+    });
+  });
+
+  describe('GET organizations', () => {
+    const paginationQueryDto: PaginationQueryDto = {
+      limit: 1,
+      offset: 20,
+    };
+
+    it('should call service.findAll method', async () => {
+      await controller.findAll(paginationQueryDto);
+
+      expect(service.findAll).toBeCalledTimes(1);
+      expect(service.findAll).toBeCalledWith(paginationQueryDto);
+    });
+  });
+
+  describe('GET one organization', () => {
+    const organizationId: Organization['id'] = randomUUID();
+
+    it('should call service.findOneOrFail method', async () => {
+      await controller.findOne(organizationId);
+
+      expect(service.findOneOrFail).toBeCalledTimes(1);
+      expect(service.findOneOrFail).toBeCalledWith({
+        where: { id: organizationId },
+      });
+    });
+  });
+
+  describe('PATCH organization', () => {
+    const organizationId: Organization['id'] = randomUUID();
+    const updateOrganizationDto: UpdateOrganizationDto = {
+      name: faker.company.name(),
+    };
+
+    it('should call service.update method', async () => {
+      await controller.update(organizationId, updateOrganizationDto);
+
+      expect(service.update).toBeCalledTimes(1);
+      expect(service.update).toBeCalledWith(
+        organizationId,
+        updateOrganizationDto,
+      );
+    });
+  });
+
+  describe('DELETE organization', () => {
+    const organizationId: Organization['id'] = randomUUID();
+
+    it('should call service.remove method', async () => {
+      await controller.remove(organizationId);
+
+      expect(service.remove).toBeCalledTimes(1);
+      expect(service.remove).toBeCalledWith(organizationId);
     });
   });
 });
