@@ -9,7 +9,7 @@ and three different environments:
 - test
 - production
 
-## Dependencies: Node & friends
+## Dependencies:
 
 - You need [`node`](https://nodejs.org/en/) (v18.12.1) and we highly recommend installing it through a _Version Manager_, such as [`nvm`](https://github.com/creationix/nvm).
 - [`Docker`](https://docs.docker.com/engine/install) must be installed on your machine.

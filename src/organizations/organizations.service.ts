@@ -22,6 +22,7 @@ export class OrganizationsService {
     const organization = this.organizationRepository.create(
       createOrganizationDto,
     );
+
     return this.organizationRepository.save(organization);
   }
 
@@ -49,6 +50,7 @@ export class OrganizationsService {
         ...conditions,
         ...this.findWithRelations,
       });
+
       return organization;
     } catch (e) {
       throw new NotFoundException('Organization not found');
@@ -71,6 +73,7 @@ export class OrganizationsService {
 
   async remove(id: Organization['id']) {
     const organization = await this.findOneOrFail({ where: { id } });
+
     return this.organizationRepository.remove(organization);
   }
 }
