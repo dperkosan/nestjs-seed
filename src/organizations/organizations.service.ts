@@ -26,8 +26,8 @@ export class OrganizationsService {
     return this.organizationRepository.save(organization);
   }
 
-  async findAll(paginationQuery: PaginationQueryDto) {
-    const { limit, offset } = paginationQuery;
+  async findAll(paginationQueryDto: PaginationQueryDto) {
+    const { limit, offset } = paginationQueryDto;
 
     return this.organizationRepository.find({
       order: { name: 'ASC' },
