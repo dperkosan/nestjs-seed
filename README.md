@@ -14,18 +14,20 @@ and three different environments:
 - You need [`node`](https://nodejs.org/en/) (v18.12.1) and we highly recommend installing it through a _Version Manager_, such as [`nvm`](https://github.com/creationix/nvm).
 - [`Docker`](https://docs.docker.com/engine/install) must be installed on your machine.
 
+## Node version
+
+In root folder, set correct Node version with command:
+
+```bash
+$ nvm use
+```
+
 ## .env file
 
-In root folder, create `.env` file with following configuration:
+In root folder, copy `.env.example` file to `.env` file:
 
-```shell
-NODE_ENV=development
-DB_HOST=localhost
-DB_NAME=nestjs-seed-dev
-DB_NAME_TEST=nestjs-seed-test
-DB_PORT=5432
-DB_USERNAME=postgres
-DB_PASSWORD=postgres
+```bash
+$ cp .env.example .env
 ```
 
 ## Installation
@@ -77,3 +79,5 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+
+## Continuous integration

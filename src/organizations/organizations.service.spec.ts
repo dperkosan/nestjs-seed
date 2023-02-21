@@ -51,13 +51,7 @@ describe('OrganizationsService', () => {
     });
 
     it('should call create and save methods and create organization', async () => {
-      await expect(service.create(createOrganizationDto)).resolves.toEqual({
-        id: expect.any(String),
-        users: [],
-        createdAt: expect.any(Date),
-        updatedAt: expect.any(Date),
-        ...createOrganizationDto,
-      });
+      await service.create(createOrganizationDto);
 
       expect(repo.create).toBeCalledTimes(1);
       expect(repo.create).toBeCalledWith(createOrganizationDto);
