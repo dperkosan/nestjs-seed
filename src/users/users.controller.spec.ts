@@ -1,12 +1,12 @@
 import { faker } from '@faker-js/faker';
 import { Test, TestingModule } from '@nestjs/testing';
-import { randomUUID } from 'crypto';
 
 import { PaginationQueryDto } from '../common/dto/pagination-query.dto';
+import { organizationMock } from '../organizations/organizations.mock';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { User } from './entities/user.entity';
 import { UsersController } from './users.controller';
+import { userMock } from './users.mock';
 import { UsersService } from './users.service';
 
 describe('UsersController', () => {
@@ -46,7 +46,7 @@ describe('UsersController', () => {
         firstName: faker.name.firstName(),
         lastName: faker.name.lastName(),
         email: faker.internet.email(),
-        organizationId: randomUUID(),
+        organizationId: organizationMock.id,
       };
     });
 
@@ -73,7 +73,7 @@ describe('UsersController', () => {
   });
 
   describe('GET one user', () => {
-    const userId: User['id'] = randomUUID();
+    const userId = userMock.id;
 
     it('should call service.findOneOrFail method', async () => {
       await controller.findOne(userId);
@@ -86,7 +86,7 @@ describe('UsersController', () => {
   });
 
   describe('PATCH user', () => {
-    const userId: User['id'] = randomUUID();
+    const userId = userMock.id;
     const updateUserDto: UpdateUserDto = {
       firstName: faker.name.firstName(),
     };
@@ -100,7 +100,7 @@ describe('UsersController', () => {
   });
 
   describe('DELETE user', () => {
-    const userId: User['id'] = randomUUID();
+    const userId = userMock.id;
 
     it('should call service.remove method', async () => {
       await controller.remove(userId);

@@ -93,6 +93,7 @@
     "coveragePathIgnorePatterns": [
       ".module.ts",
       ".factory.ts",
+      ".mock.ts",
       ".dto.ts",
       ".entity.ts",
       "<rootDir>/database/",

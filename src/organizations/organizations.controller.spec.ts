@@ -1,12 +1,11 @@
 import { faker } from '@faker-js/faker';
 import { Test, TestingModule } from '@nestjs/testing';
-import { randomUUID } from 'crypto';
 
 import { PaginationQueryDto } from '../common/dto/pagination-query.dto';
 import { CreateOrganizationDto } from './dto/create-organization.dto';
 import { UpdateOrganizationDto } from './dto/update-organization.dto';
-import { Organization } from './entities/organization.entity';
 import { OrganizationsController } from './organizations.controller';
+import { organizationMock } from './organizations.mock';
 import { OrganizationsService } from './organizations.service';
 
 describe('OrganizationsController', () => {
@@ -99,7 +98,7 @@ describe('OrganizationsController', () => {
   });
 
   describe('GET one organization', () => {
-    const organizationId: Organization['id'] = randomUUID();
+    const organizationId = organizationMock.id;
 
     it('should call service.findOneOrFail method', async () => {
       await controller.findOne(organizationId);
@@ -112,7 +111,7 @@ describe('OrganizationsController', () => {
   });
 
   describe('PATCH organization', () => {
-    const organizationId: Organization['id'] = randomUUID();
+    const organizationId = organizationMock.id;
     const updateOrganizationDto: UpdateOrganizationDto = {
       name: faker.company.name(),
     };
@@ -129,7 +128,7 @@ describe('OrganizationsController', () => {
   });
 
   describe('DELETE organization', () => {
-    const organizationId: Organization['id'] = randomUUID();
+    const organizationId = organizationMock.id;
 
     it('should call service.remove method', async () => {
       await controller.remove(organizationId);
