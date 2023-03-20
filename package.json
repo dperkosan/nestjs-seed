@@ -97,6 +97,7 @@
       ".dto.ts",
       ".entity.ts",
       "<rootDir>/database/",
+      "<rootDir>/utils/",
       "<rootDir>/main.ts"
     ],
     "coverageDirectory": "../coverage",
