@@ -28,14 +28,15 @@ const config: Record<NodeEnvAllowedValues, DataSourceOptions & SeederOptions> =
     development: {
       ...defaultDataSourceOptions,
       factories: ['dist/**/*.factory.js'],
-      seeds: ['src/database/seeds/*{.ts,.js}'],
+      seeds: ['dist/database/seeds/*{.ts,.js}'],
       logging: true,
     },
     test: {
       ...defaultDataSourceOptions,
       database: process.env.DB_NAME_TEST, // test database name
-      factories: ['dist/**/*.factory.js'],
-      seeds: ['src/database/seeds/*{.ts,.js}'],
+      entities: ['src/**/*.entity.ts'],
+      factories: ['src/**/*.factory.ts'],
+      migrations: ['src/database/migrations/*.ts'],
       synchronize: true,
     },
     production: {

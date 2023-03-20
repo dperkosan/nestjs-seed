@@ -1,8 +1,9 @@
 import { DataSource } from 'typeorm';
 import { Seeder, SeederFactoryManager } from 'typeorm-extension';
 
-import { Organization } from 'src/organizations/entities/organization.entity';
-import { User } from 'src/users/entities/user.entity';
+import { Organization } from '../../organizations/entities/organization.entity';
+import { User } from '../../users/entities/user.entity';
+import clearDB from '../../utils/clearDB';
 
 export default class Seed implements Seeder {
   public async run(
@@ -10,12 +11,7 @@ export default class Seed implements Seeder {
     factoryManager: SeederFactoryManager,
   ): Promise<any> {
     // clear DB first
-    await dataSource.query(
-      `TRUNCATE "${dataSource.getMetadata(Organization).tableName}" CASCADE;`,
-    );
-    await dataSource.query(
-      `TRUNCATE "${dataSource.getMetadata(User).tableName}" CASCADE;`,
-    );
+    await clearDB(dataSource);
 
     // seed DB
     const organizationFactory = factoryManager.get(Organization);
